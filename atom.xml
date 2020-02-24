@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzxll.github.io</id>
     <title>Gridea</title>
-    <updated>2020-02-24T04:48:48.045Z</updated>
+    <updated>2020-02-24T04:58:35.008Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzxll.github.io"/>
     <link rel="self" href="https://zzxll.github.io/atom.xml"/>
@@ -10,6 +10,88 @@
     <logo>https://zzxll.github.io/images/avatar.png</logo>
     <icon>https://zzxll.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Markdown新手指南]]></title>
+        <id>https://zzxll.github.io/post/markdown-xin-shou-zhi-nan/</id>
+        <link href="https://zzxll.github.io/post/markdown-xin-shou-zhi-nan/">
+        </link>
+        <updated>2020-02-24T04:53:19.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="markdown基本知识">Markdown基本知识</h2>
+<p>Markdown是一种轻量级标记语言，目前还没有统一的语法标准，目前较为通用的是GitHub基于CommonMark提出的GFM正式规范。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="markdown基本知识">Markdown基本知识</h2>
+<p>Markdown是一种轻量级标记语言，目前还没有统一的语法标准，目前较为通用的是GitHub基于CommonMark提出的GFM正式规范。</p>
+<!-- more -->
+<h2 id="markdown格式标记符号说明">Markdown格式标记符号说明</h2>
+<h3 id="1-标题">1. 标题</h3>
+<p>使用#数量表示标题级数</p>
+<h3 id="2-有序列表">2. 有序列表</h3>
+<p>在行首使用<code>1.</code>,<code>2.</code>,<code>3</code>表示</p>
+<ol>
+<li>有序列表1</li>
+<li>有序列表2</li>
+<li>有序列表3</li>
+</ol>
+<h3 id="3-引用">3. 引用</h3>
+<p>使用<code>&gt;</code> 表示文字引用</p>
+<blockquote>
+<p>为知笔记Markdown新手指南：http://www.wiz.cn/feature-markdown.html</p>
+</blockquote>
+<h3 id="4-图片">4. 图片</h3>
+<p>插入图片的路径可以使用相对路径，绝对路径和网络途径</p>
+<p>相对路径：<code>![图片说明](media/picture.jpeg)</code></p>
+<p>绝对路径，网络路径与上述格式相同；</p>
+<h3 id="5-链接">5. 链接</h3>
+<p>为文字插入跳转链接，格式为<code>[描述](链接地址)</code>，其中链接地址可以为文件名。</p>
+<p>例如：<a href="http://www.wiz.cn">为知笔记</a></p>
+<h3 id="6-代码">6. 代码</h3>
+<p>代码可分为行内代码和段落代码，在使用一对反单引号可以插入行内代码，三个反单引号进行整段代码输入，在单引号后紧接具体编程语言，可以对代码高亮进行优化。</p>
+<h3 id="7-目录">7. 目录</h3>
+<p>使用<code>[TOC]</code>插入目录</p>
+<h3 id="8-公式">8. 公式</h3>
+<p>公式可分为行内公式和块级公式，分别使用<code>$公式1$</code>和<code>$$公式2$$</code>表示</p>
+<h3 id="9-表格">9. 表格</h3>
+<ol>
+<li><code>| 为知笔记|更新 | 版本 |</code></li>
+<li><code>|------|----|----|</code></li>
+<li><code>| WizNote | Markdown| Latest |</code></li>
+</ol>
+<p>示例：</p>
+<table>
+<thead>
+<tr>
+<th>Typora</th>
+<th>更新</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="10-粗体-斜体-删除线">10. 粗体、斜体、删除线</h3>
+<p><strong>粗体</strong>：<code>**粗体**</code>，<em>斜体</em>：<code>*斜体*</code>，<s>删除线</s>：<code>~~删除线~~</code></p>
+<h3 id="11-脚注">11. 脚注</h3>
+<p>在需要添加脚注<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>的词后面加<code>[^1]</code>，并在文章结尾加入<code>[^1]: 注释内容</code></p>
+<h3 id="12-高亮文本">12. 高亮文本</h3>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>脚注示例 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://zzxll.github.io/post/hello-gridea/</id>
