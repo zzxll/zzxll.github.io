@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzxll.github.io</id>
     <title>Gridea</title>
-    <updated>2020-02-24T05:11:23.754Z</updated>
+    <updated>2020-02-24T05:11:59.817Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzxll.github.io"/>
     <link rel="self" href="https://zzxll.github.io/atom.xml"/>
@@ -16,11 +16,9 @@
         <link href="https://zzxll.github.io/post/markdown-xin-shou-zhi-nan/">
         </link>
         <updated>2020-02-24T04:53:19.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="markdown基本知识">Markdown基本知识</h2>
-<p>Markdown是一种轻量级标记语言，目前还没有统一的语法标准，目前较为通用的是GitHub基于CommonMark提出的GFM正式规范。</p>
+        <summary type="html"><![CDATA[<p>Markdown是一种轻量级标记语言，目前还没有统一的语法标准，目前较为通用的是GitHub基于CommonMark提出的GFM正式规范。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h2 id="markdown基本知识">Markdown基本知识</h2>
-<p>Markdown是一种轻量级标记语言，目前还没有统一的语法标准，目前较为通用的是GitHub基于CommonMark提出的GFM正式规范。</p>
+        <content type="html"><![CDATA[<p>Markdown是一种轻量级标记语言，目前还没有统一的语法标准，目前较为通用的是GitHub基于CommonMark提出的GFM正式规范。</p>
 <!-- more -->
 <h2 id="markdown格式标记符号说明">Markdown格式标记符号说明</h2>
 <h3 id="1-标题">1. 标题</h3>
