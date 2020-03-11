@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzxll.github.io</id>
     <title>zzxll&apos;s blog</title>
-    <updated>2020-03-11T10:04:27.961Z</updated>
+    <updated>2020-03-11T10:14:17.733Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzxll.github.io"/>
     <link rel="self" href="https://zzxll.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>文字上方的logo应该更大一点</subtitle>
     <logo>https://zzxll.github.io/images/avatar.png</logo>
     <icon>https://zzxll.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, zzxll&apos;s blog</rights>
@@ -96,7 +96,7 @@
         <link href="https://zzxll.github.io/post/hello-world/">
         </link>
         <updated>2020-03-10T10:01:27.000Z</updated>
-        <content type="html"><![CDATA[<p>你好，欢迎来到我的个人博客，主要以个人分享为主，没有明确的主题。本站点基于GitHub Pages搭建，使用<a href="https://gridea.dev">Gridea</a>客户端进行管理。</p>
+        <content type="html"><![CDATA[<p>你好，欢迎来到我的个人博客。本站点主要以个人分享为主，没有明确的主题。网站使用<a href="https://gridea.dev">Gridea</a>客户端进行搭建和管理，托管在GitHub Pages上。</p>
 ]]></content>
     </entry>
 </feed>
