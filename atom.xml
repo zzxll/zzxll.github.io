@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzxll.github.io</id>
     <title>zzxll&apos;s blog</title>
-    <updated>2020-05-11T16:31:48.228Z</updated>
+    <updated>2020-06-13T11:24:14.565Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzxll.github.io"/>
     <link rel="self" href="https://zzxll.github.io/atom.xml"/>
@@ -10,6 +10,447 @@
     <logo>https://zzxll.github.io/images/avatar.png</logo>
     <icon>https://zzxll.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, zzxll&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[学习笔记：程序设计实习 第2周 类和对象初探]]></title>
+        <id>https://zzxll.github.io/post/course-pkupop02/</id>
+        <link href="https://zzxll.github.io/post/course-pkupop02/">
+        </link>
+        <updated>2020-06-13T11:17:08.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是<a href="https://www.bilibili.com/video/av60329215/">“北京大学—程序设计实习[C++]”</a>公开课的听课笔记，配套教材是任课老师自己编写的<a href="https://book.douban.com/subject/11529009/">《新标准C++程序设计教程》</a>，博主是入门菜鸟，故整理并记录在博客里，方便后续查看。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是<a href="https://www.bilibili.com/video/av60329215/">“北京大学—程序设计实习[C++]”</a>公开课的听课笔记，配套教材是任课老师自己编写的<a href="https://book.douban.com/subject/11529009/">《新标准C++程序设计教程》</a>，博主是入门菜鸟，故整理并记录在博客里，方便后续查看。</p>
+<!-- more -->
+<h2 id="浅谈面向对象程序设计方法">浅谈面向对象程序设计方法</h2>
+<h3 id="结构化程序设计存在的问题">结构化程序设计存在的问题</h3>
+<p>结构化程序设计：复杂的大问题-&gt;层层分解/模块化-&gt;若干子问题</p>
+<p>自顶向下，逐步求精</p>
+<p>程序=数据结构+算法</p>
+<p>存在的问题：理解难，修改难，查错难，重用难；</p>
+<h3 id="面向对象的程序设计">面向对象的程序设计</h3>
+<p>面向对象的程序=类+类+...+类</p>
+<p>面向对象的程序设计方法：</p>
+<figure data-type="image" tabindex="1"><img src="https://zzxll.github.io/post-images/1592047162973.png" alt="面向对象的程序设计方法" loading="lazy"></figure>
+<!-- more -->
+<h3 id="类的定义">类的定义</h3>
+<pre><code class="language-c++">class 类名
+{
+    访问范围说明符：
+        成员变量1
+        成员变量2
+        ……
+        成员函数声明1
+        成员函数声明2
+        ……
+    访问范围说明符：
+        更多成员变量
+        更多成员函数声明
+        ……
+}
+</code></pre>
+<h2 id="面向对象程序设计语言的发展历程">面向对象程序设计语言的发展历程</h2>
+<p>2011年，提出了c++11标准</p>
+<h2 id="从客观事物抽象出类的例子">从客观事物抽象出类的例子</h2>
+<p>例：写一个程序，输入矩形的宽和高，输出面积和周长。</p>
+<ul>
+<li>矩形的<strong>属性</strong>：宽和高
+<ul>
+<li>两个变量，分别代表宽和高</li>
+</ul>
+</li>
+<li>对矩形的<strong>操作</strong>：
+<ul>
+<li>设置宽和高</li>
+<li>计算面积</li>
+<li>计算周长</li>
+</ul>
+</li>
+</ul>
+<p>客观事物-&gt;类</p>
+<p>矩形类：成员变量+成员函数（可以理解成一个带函数的结构体）</p>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class CRectangle {
+public:
+    int w, h;
+    void Init(int w_, int h_) {
+        w = w_; h = h_;
+    }
+    int Area() {
+        return w * h;
+    }
+    int Perimeter() {
+        return 2 * (w + h);
+    }
+};//必须有分号
+
+int main() {
+    int w, h;
+    CRectangle r;//r是一个对象
+    cin &gt;&gt; w &gt;&gt; h;
+    r.Init(w, h);
+    cout &lt;&lt; &quot;the area is &quot; &lt;&lt; r.Area() &lt;&lt; endl &lt;&lt; &quot;the perimeter is &quot; &lt;&lt; r.Perimeter();
+    return 0;
+}
+</code></pre>
+<p>类定义的变量--类的实例--“对象”</p>
+<h3 id="对象的内存分配">对象的内存分配</h3>
+<p>对象的内存空间</p>
+<ul>
+<li>对象的大小 = 所有成员变量的大小之和</li>
+<li>E.g. CRectangle 类的对象，sizeof(Crectangle) = 8，成员变量是两个int类型的，一个int型占4个字节。</li>
+</ul>
+<p>每个对象各有自己的存储空间，一个对象的某个成员变量被改变，不会影响到其他的对象。</p>
+<h3 id="对象间的运算">对象间的运算</h3>
+<p>对象之间可以用“=”进行赋值</p>
+<p>不能用“==”，“！=”，“&lt;”，“&gt;”，“&lt;=”，“&gt;=”进行比较，除非这些运算符经过了“重载”。</p>
+<h3 id="访问类的成员变量和成员函数">访问类的成员变量和成员函数</h3>
+<p>用法1：对象名.成员名</p>
+<pre><code class="language-c++">Crectangle r1, r2;
+r1.w = 5;
+r2.Init(3,4);
+</code></pre>
+<p>用法2：指针-&gt;成员名</p>
+<pre><code class="language-c++">CRectangle r1, r2;
+CRectangle * p1 = &amp; r1;
+CRectangle * p2 = &amp; r2;
+p1-&gt;w = 5;
+p2-&gt;Init(3,4);//Init作用在p2指向的对象上
+</code></pre>
+<p>用法3：引用名.成员名</p>
+<pre><code class="language-c++">CRectangle r2;
+CRectangle &amp; rr = r2;
+rr.w = 5;
+rr.Init(3,4);//rr的值变了，r2的值也变了
+</code></pre>
+<p>另一种输出结果的方式</p>
+<pre><code class="language-c++">void PrintRectangle(CRectangle &amp; r){
+    cout &lt;&lt; r.Area()&lt;&lt;&quot;,&quot;&lt;&lt;r.Perimeter();
+}
+CRectangle r3;
+r3.Init(3,4);
+PrintRectangle(r3);
+</code></pre>
+<h3 id="类的成员函数的另一种写法">类的成员函数的另一种写法</h3>
+<p>成员函数体和类的定义分开写，使用<code>::</code>区分</p>
+<pre><code class="language-c++">class CRectangle {
+pubilc:
+	int w, h;
+	int Area();//成员函数在此处声明
+	int Perimeter();
+	void Init(int w_, int h_);
+};//一定要有分号
+
+int CRectangle::Area() {
+	return w * h;
+}
+
+int CRectangle::Perimeter() {
+	return 2 * (w + h);
+}
+
+void CRectangle::Init(int w_, int h_) {
+	w = w_; h = h_;
+}
+</code></pre>
+<p>调用时通过：对象、对象的指针、对象的引用</p>
+<h2 id="类成员的可访问范围">类成员的可访问范围</h2>
+<p>关键字：类成员可被访问的范围，说明类成员的可见性，缺省时为私有成员。</p>
+<ul>
+<li>private：指定私有成员，只能在成员函数内被访问</li>
+<li>public：指定公有成员，可以在任何地方被访问</li>
+<li>protected：指定保护成员，保护成员可以被派生类的成员函数引用</li>
+</ul>
+<p>三种关键字出现的次数和先后次序都没有限制</p>
+<h3 id="对象成员的访问权限">对象成员的访问权限</h3>
+<p>定义一个类：</p>
+<pre><code class="language-c++">class className{
+    private:
+    	私有属性和函数
+    public:
+    	公有属性和函数
+    protected:
+    	保护属性和函数
+}
+</code></pre>
+<p>举例：</p>
+<pre><code class="language-c++">class Man{
+    	int nAge;//私有成员
+    	char szName[20];
+    public:
+    	void SetName(char * Name){
+            strcpy(szName, Name);
+        }
+};
+</code></pre>
+<p>类的成员函数内部，可以访问：</p>
+<ul>
+<li>当前对象的全部属性，函数</li>
+<li>同类其他对象的全部属性，函数</li>
+</ul>
+<p>类的成员函数以外的地方，可以访问：</p>
+<ul>
+<li>只能够访问该类对象的公有成员（public）</li>
+</ul>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class CEmployee {
+private:
+	char szName[30];//名字
+public:
+	int salary;//工资
+	void setName(char* name);
+	void getName(char* name);
+	void averageSalary(CEmployee e1, CEmployee e2);
+};
+
+void CEmployee::setName(char* name) {
+	strcpy(szName, name);//ok
+}
+
+void CEmployee::getName(char* name) {
+	strcpy(name, szName);//ok
+}
+
+void CEmployee::averageSalary(CEmployee e1, CEmployee e2) {
+	salary = (e1.salary + e2.salary) / 2;
+}
+
+int main() {
+	CEmployee e;
+	char mName[30];//
+	//strcpy(e.szName,&quot;Tom123456789&quot;);//编译错，不能访问私有成员
+	e.setName(&quot;Tom&quot;);//ok
+	e.salary = 5000;//ok
+	cout &lt;&lt; e.salary &lt;&lt; endl;
+	e.getName(mName);
+	cout &lt;&lt; mName &lt;&lt; endl;//输出员工人名
+	return 0;
+</code></pre>
+<p>程序中必须使用接口函数（setName）对私有变量进行修改。</p>
+<p><strong>设置私有成员的目的</strong>：</p>
+<p>强制对成员变量的访问一定要通过成员函数进行</p>
+<p><strong>设置私有成员的机制：</strong></p>
+<p>隐藏</p>
+<p><strong>程序容易修改：</strong></p>
+<p>如szName-&gt;char szName[5]</p>
+<p>如果szName不是私有，需要修改全部：</p>
+<pre><code class="language-c++">strcpy(man1.szName,&quot;Tom24325435366&quot;);
+</code></pre>
+<p>如果将szName变为私有，所有对szName的访问都是通过成员函数来进行：</p>
+<pre><code class="language-c++">man1.setName(&quot;Tom1234543534635645&quot;);
+</code></pre>
+<h2 id="内联成员函数与重载成员函数">内联成员函数与重载成员函数</h2>
+<h3 id="内联成员函数">内联成员函数</h3>
+<p>减少函数调用的开销，内联成员函数的定义方式</p>
+<ul>
+<li>inline+成员函数</li>
+<li>整个函数体出现在类定义内部</li>
+</ul>
+<pre><code class="language-c++">class B {
+	inline void func1();
+	void func2() {
+		...
+	};
+};
+void B::func1(){}
+</code></pre>
+<h3 id="成员函数的重载及参数缺省">成员函数的重载及参数缺省</h3>
+<p>重载成员函数</p>
+<p>成员函数：带缺省参数</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+
+using namespace std;
+
+class Location {
+private:
+	int x, y;
+public:
+	void init(int x = 0, int y = 0);
+	void valueX(int val) {
+		x = val;
+	}
+	int valueX() {
+		return x;
+	}
+};
+
+void Location::init(int X, int Y) {
+	x = X;
+	y = Y;
+}
+
+int main() {
+	Location A;
+	A.init(5);//以5，0初始化
+	A.valueX(5);//将x设为5
+	cout &lt;&lt; A.valueX();//重载成员函数，输出5
+	return 0;
+}
+</code></pre>
+<p>使用缺省参数的时候，要注意避免函数重载时的二义性</p>
+<pre><code class="language-c++">class Location {
+private:
+	int x, y;
+public:
+	void init(int x = 0, int y = 0);
+	void valueX(int val = 0) {
+		x = val;
+	}
+	int valueX() {
+		return x;
+	}
+};
+
+Location A;
+A.valueX();//error，编译器无法判断调用哪个valueX
+</code></pre>
+<h2 id="构造函数">构造函数</h2>
+<h3 id="基本概念p179">基本概念（P179）</h3>
+<ul>
+<li>成员函数的一种
+<ul>
+<li>名字与类名相同，可以有参数，<strong>不能有返回值</strong>（void也不行）</li>
+<li>作用是对对象进行初始化，如给成员变量赋初值</li>
+<li>如果定义类时没写构造函数，则编译器生成一个默认的无参数的构造函数
+<ul>
+<li>默认构造函数无参数，不做任何操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果定义了构造函数，则编译器不生成默认的无参数的构造函数</li>
+<li>对象生成时构造函数自动被调用。对象一旦生成，就再也不能在其上执行构造函数</li>
+<li>一个类可以有多个构造函数</li>
+</ul>
+<p><strong>为什么需要构造函数</strong></p>
+<p>1） 构造函数执行必要的初始化工作，有了构造函数，就不必专门再写初始化函数，也不用担心忘记调用初始化函数。</p>
+<p>2）有事对象没被初始化就使用，会导致程序错误。</p>
+<pre><code class="language-c++">class Complex {
+private:
+	double real, imag;
+public:
+	void set(double r, double i);
+};//编译器自动生成默认构造函数
+
+Complex c1;//默认构造函数被调用
+Complex* pc = new Complex;//默认构造函数被调用
+</code></pre>
+<p>有构造函数的情况：</p>
+<pre><code class="language-c++">class Complex {
+private:
+	double real, imag;
+public:
+	Complex(double r, double i = 0);
+};
+Complex::Complex(double r, double i) {
+	real = r;
+	imag = i;
+}
+
+Complex c1;//error，缺少构造函数的参数
+Complex* pc = new Complex;//error，没有参数
+Complex cl(2);//ok
+Complex c1(2, 4), c2(3, 5);
+Complex* pc = new Complex(3, 4);
+</code></pre>
+<p>上面程序中，new出来的对象返回值是指针。</p>
+<p>可以有多个构造函数，参数个数或类型不同：</p>
+<pre><code class="language-c++">class Complex {
+private:
+	double real, imag;
+public:
+	void Set(double r, double i);
+	Complex(double r, double i);
+	Complex(double r);
+	Complex(Complex c1, Complex c2);
+};
+
+Complex::Complex(double r, double i) {
+	real = r;
+	imag = i;
+}
+
+Complex::Complex(double r) {
+	real = r;
+	imag = 0;
+}
+
+Complex::Complex(Complex c1, Complex c2) {
+	real = cl.real + c2.real;
+	imag = c1.imag + c2.imag;
+}
+
+Complex c1(3), c2(1, 0), c3(c1, c2);
+//c1 = {3,0}, c2 = {1,0}, c3 = {4,0}
+</code></pre>
+<p>上面程序中，整型可以自动被转换为double类型。</p>
+<h3 id="构造函数在数组中的使用">构造函数在数组中的使用</h3>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+
+using namespace std;
+
+class CSample {
+private:
+	int x;
+public:
+	CSample(){
+		cout &lt;&lt; &quot;Constructor1 Called&quot; &lt;&lt; endl;
+	}
+	CSample(int n) {
+		x = n;
+		cout &lt;&lt; &quot;Constructor2 Called&quot; &lt;&lt; endl;
+	}
+};
+
+int main() {
+	CSample array1[2];
+	cout &lt;&lt; &quot;step1&quot; &lt;&lt; endl;
+	CSample array2[2] = { 4,5 };
+	cout &lt;&lt; &quot;step2&quot; &lt;&lt; endl;
+	CSample array3[2] = { 3 };
+	cout &lt;&lt; &quot;step3&quot; &lt;&lt; endl;
+	CSample* array4 = new CSample[2];
+	delete[]array4;
+	return 0;
+}
+//输出：
+//Constructor1 Called
+//Constructor1 Called
+//step1
+//Constructor2 Called
+//Constructor2 Called
+//step2
+//Constructor2 Called
+//Constructor1 Called
+//step3
+//Constructor1 Called
+//Constructor1 Called
+</code></pre>
+<p>例2：</p>
+<pre><code class="language-c++">class Test{
+public：
+    Test(int n){ }//(1)
+    Test(int n, int m){ }//(2)
+    Test(){ }//(3)
+};
+Test array1[3] = {1, Test(1,2)};
+//三个元素分别用（1）,（2）,（3）初始化
+Test array3[3] = {Test(2,3),Test(1,2),1};
+//三个元素分别用（2）,（2）,（1）初始化
+Test* pArray[3] = {new Test(4), new Test(1,2)};
+//两个元素分别用（1）,（2）初始化，pArray[2]未初始化，是一个未经初始化的指针
+</code></pre>
+<p>Test* pArray[3]是一个指针数组，不是对象数组，里面每个元素是个指针，不是对象，不会引发对象的生成。</p>
+<p>new出来的对象返回值是指针，Test* pArray[3]数组里的指针指向new出来的对象，pArray[0]和pArray[1]分别指向用（1）,（2）初始化的对象，pArray[2]是一个未经初始化的指针</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[学习笔记：程序设计实习 第1周 从C走进C++]]></title>
         <id>https://zzxll.github.io/post/course-pkupop01/</id>
