@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzxll.github.io</id>
     <title>zzxll&apos;s blog</title>
-    <updated>2021-05-03T04:42:36.417Z</updated>
+    <updated>2021-06-27T06:49:10.520Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzxll.github.io"/>
     <link rel="self" href="https://zzxll.github.io/atom.xml"/>
@@ -10,6 +10,87 @@
     <logo>https://zzxll.github.io/images/avatar.png</logo>
     <icon>https://zzxll.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, zzxll&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[踩坑笔记：WSL2安装CUDA记录]]></title>
+        <id>https://zzxll.github.io/post/gpu-cuda-in-wsl/</id>
+        <link href="https://zzxll.github.io/post/gpu-cuda-in-wsl/">
+        </link>
+        <updated>2021-06-27T06:38:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>618购入了一张RTX 3060显卡，可以开始愉快的炼丹了。深度学习最正确的姿势当然是装双系统，然后在Linux下进行开发。但听说NVIDIA从去年开始在Windows 10开发版上支持了WSL2调用GPU资源，也就是说配置好之后，就能边用Windows，边用CUDA跑训练，这样再也不用频繁的重启电脑切换系统了，听起来很不错的样子，于是开始踩坑。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>618购入了一张RTX 3060显卡，可以开始愉快的炼丹了。深度学习最正确的姿势当然是装双系统，然后在Linux下进行开发。但听说NVIDIA从去年开始在Windows 10开发版上支持了WSL2调用GPU资源，也就是说配置好之后，就能边用Windows，边用CUDA跑训练，这样再也不用频繁的重启电脑切换系统了，听起来很不错的样子，于是开始踩坑。</p>
+<!-- more -->
+<h2 id="主要参考资料">主要参考资料</h2>
+<ul>
+<li>(https://docs.microsoft.com/zh-cn/windows/win32/direct3d12/gpu-cuda-in-wsl)[https://docs.microsoft.com/zh-cn/windows/win32/direct3d12/gpu-cuda-in-wsl]</li>
+<li>(https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers)[https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers]</li>
+</ul>
+<h2 id="安装过程">安装过程</h2>
+<p>安装过程主要参考微软和NVIDIA这两篇文章，照着步骤一步一步做下来就好了，总结流程如下：</p>
+<ol>
+<li>注册Windows预览体验计划，加入Dev渠道，升级开发者预览版</li>
+<li>安装预览版GPU驱动程序（需要注册NVIDIA账号下载）</li>
+<li>安装WSL2，和具体的Linux发行版本（只在Ubuntu18.04上安装成功了）</li>
+<li>进入WSL2，安装CUDA ToolKit</li>
+<li>测试CUDA ToolKit是否安装成功</li>
+<li>安装NVIDIA Container Toolkit</li>
+<li>测试Dockers是否安装成功</li>
+<li>Finish</li>
+</ol>
+<h2 id="具体遇到的一些问题">具体遇到的一些问题</h2>
+<h3 id="windows预览体验计划页面空白刷新不出来">Windows预览体验计划页面空白，刷新不出来？</h3>
+<p>设置--隐私--诊断和反馈--诊断数据：勾选可选诊断数据。如果还是刷新不出来，把诊断数据下面的改进墨迹书写和键入的开关打开。</p>
+<h3 id="ubuntu2004无法通过apt-get安装cuda-toolkit">Ubuntu20.04无法通过apt-get安装CUDA Toolkit？</h3>
+<p>装好WSL2后，一开始装的是Ubuntu20.04的发行版本，无法通过apt-get安装cuda toolkit，可能是自己配置为问题，具体原因未排查。NVIDIA教程中使用的是Ubuntu18.04版本，切换后安装正常。</p>
+<h3 id="win10商店无法安装ubuntu发行包点了安装无反应">Win10商店无法安装Ubuntu发行包，点了安装无反应？</h3>
+<p>怀疑是微软的BUG，官网有重置应用商店的方法，但自己试了没用。可以通过手动下载 .AppxBundle 文件，然后双击运行安装。</p>
+<p>Ubuntu18.04在Windows商店中的网址：https://www.microsoft.com/zh-cn/p/ubuntu-1804-lts/9n9tngvndl3q</p>
+<p>应用链接转换网址：https://store.rg-adguard.net</p>
+<p>复制Ubuntu18.04的地址进行转换，下载对应的文件：CanonicalGroupLimited.Ubuntu18.04onWindows_1804.2020.824.0_neutral_~_79rhkp1fndgsc.appxbundle</p>
+<p>下载比较慢的可以用FDM，IDM这类软件进行下载</p>
+<h3 id="dockers版本问题">Dockers版本问题？</h3>
+<p>NVIDIA文档中说 NVIDIA Container Toolkit还不支持Docker Desktop WSL2版本，应该用以下指令安装标准版的Docker-CE</p>
+<pre><code class="language-bash">curl https://get.docker.com | sh
+</code></pre>
+<h3 id="pip更换国内源方法">pip更换国内源方法？</h3>
+<p>建议更换，下载速度快很多，自己用的是阿里云的，其他国内的源也可以。</p>
+<p>复制/etc/apt/sources.list文件备份，删除里面的内容并替换成：</p>
+<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+</code></pre>
+<p>退出，source一下</p>
+<h3 id="anaconda换源方法">anaconda换源方法？</h3>
+<p>建议更换成国内的源，下载速度快很多，自己用的是清华源，https://mirrors.tuna.tsinghua.edu.cn/help/anaconda</p>
+<p>复制用户根目录下.condarc文件备份，删除里面的内容并替换成：</p>
+<pre><code class="language-bash">channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+</code></pre>
+<h3 id="安装pytorch出现下载错误">安装pytorch出现下载错误？</h3>
+<p>在pytorch官网选好对应的配置，复制conda指令安装，cudatoolkit下载失败的可以在指令后面加 -c conda-forge</p>
+<pre><code class="language-bash">conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia -c conda-forge
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[学习笔记：程序设计实习 第2周 类和对象初探]]></title>
         <id>https://zzxll.github.io/post/course-pkupop02/</id>
