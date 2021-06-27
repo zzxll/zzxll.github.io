@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzxll.github.io</id>
     <title>zzxll&apos;s blog</title>
-    <updated>2021-06-27T06:49:41.483Z</updated>
+    <updated>2021-06-27T06:52:22.200Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzxll.github.io"/>
     <link rel="self" href="https://zzxll.github.io/atom.xml"/>
@@ -22,8 +22,8 @@
 <!-- more -->
 <h2 id="主要参考资料">主要参考资料</h2>
 <ul>
-<li>(https://docs.microsoft.com/zh-cn/windows/win32/direct3d12/gpu-cuda-in-wsl)[https://docs.microsoft.com/zh-cn/windows/win32/direct3d12/gpu-cuda-in-wsl]</li>
-<li>(https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers)[https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers]</li>
+<li><a href="https://docs.microsoft.com/zh-cn/windows/win32/direct3d12/gpu-cuda-in-wsl">https://docs.microsoft.com/zh-cn/windows/win32/direct3d12/gpu-cuda-in-wsl</a></li>
+<li><a href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers">https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers</a></li>
 </ul>
 <h2 id="安装过程">安装过程</h2>
 <p>安装过程主要参考微软和NVIDIA这两篇文章，照着步骤一步一步做下来就好了，总结流程如下：</p>
